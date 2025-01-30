@@ -17,9 +17,11 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import RNFS from 'react-native-fs';
 import Toast from 'react-native-simple-toast';
+import {ActivityIndicator} from 'react-native';
 
 const Home = () => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const clearImage = (index: number) => {
     setSelectedImages(prevImages => prevImages.filter((_, i) => i !== index));
@@ -66,11 +68,15 @@ const Home = () => {
       );
       return;
     }
-    Toast.showWithGravity(
-      'Extracting clothing items from selected images!',
-      Toast.SHORT,
-      Toast.CENTER,
-    );
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      Toast.showWithGravity(
+        'Extraction successful!',
+        Toast.SHORT,
+        Toast.CENTER,
+      );
+    }, 5000);
   };
 
   return (
@@ -109,17 +115,20 @@ const Home = () => {
             containerStyles={styles.extractButtonStyles}
             iconStyle={styles.extractIconStyle}
           />
+          {loading ? (
+            <ActivityIndicator size="large" color="black" style={{zIndex: 6}} />
+          ) : null}
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton
+            title="Upload Images"
+            handlePress={handleUpload}
+            containerStyles={styles.uploadButtonStyles}
+            textStyles={styles.buttonText}
+            isLoading={false}
+          />
         </View>
       </LinearGradient>
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          title="Upload Images"
-          handlePress={handleUpload}
-          containerStyles={styles.uploadButtonStyles}
-          textStyles={styles.buttonText}
-          isLoading={false}
-        />
-      </View>
     </SafeAreaView>
   );
 };
@@ -185,7 +194,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 3,
-    zIndex: -1,
+    zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
