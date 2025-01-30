@@ -58,43 +58,43 @@ const TabNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={MyTheme}>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarStyle: {
-            backgroundColor: MyTheme.colors.card,
-          },
-          tabBarActiveTintColor: isDarkMode ? '#ffffff' : '#000000',
-          tabBarInactiveTintColor: isDarkMode ? '#aaaaaa' : '#555555',
-          headerStyle: {
-            backgroundColor: MyTheme.colors.card,
-          },
-          headerTintColor: MyTheme.colors.text,
-        }}>
-        <Tab.Screen
-          name="home"
-          options={{
-            title: 'Home',
-            headerShown: false,
-            tabBarIcon: ({color, focused}) => (
-              <TabIcon icon={icons.home} color={color} focused={focused} />
-            ),
-          }}
-          component={Home}
-        />
-        <Tab.Screen
-          name="wardrobe"
-          options={{
-            title: 'Wardrobe',
-            headerShown: true,
-            tabBarIcon: ({color, focused}) => (
-              <TabIcon icon={icons.closet} color={color} focused={focused} />
-            ),
-          }}
-          component={Wardrobe}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer theme={MyTheme}>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: MyTheme.colors.card,
+        },
+        tabBarActiveTintColor: isDarkMode ? '#ffffff' : '#000000',
+        tabBarInactiveTintColor: isDarkMode ? '#aaaaaa' : '#555555',
+        headerStyle: {
+          backgroundColor: MyTheme.colors.card,
+        },
+        headerTintColor: MyTheme.colors.text,
+      }}>
+      <Tab.Screen
+        name="home"
+        options={{
+          title: 'Home',
+          headerShown: true,
+          tabBarIcon: ({color, focused}) => (
+            <TabIcon icon={icons.home} color={color} focused={focused} />
+          ),
+        }}
+        component={Home}
+      />
+      <Tab.Screen
+        name="wardrobe"
+        options={{
+          title: 'Wardrobe',
+          headerShown: true,
+          tabBarIcon: ({color, focused}) => (
+            <TabIcon icon={icons.closet} color={color} focused={focused} />
+          ),
+        }}
+        component={Wardrobe}
+      />
+    </Tab.Navigator>
+    // </NavigationContainer>
   );
 };
 
